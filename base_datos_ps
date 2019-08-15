@@ -1,0 +1,31 @@
+# o en postgres=#
+CREATE DATABASE testdb;
+
+CREATE TABLE tbl_tipo_ausencia (
+ id SERIAL PRIMARY KEY,
+ detalle TEXT NOT NULL UNIQUE
+);
+
+
+CREATE TABLE tbl_empleado (
+	id SERIAL PRIMARY KEY,
+	cedula VARCHAR(20),
+	apellido VARCHAR(100) NOT NULL,
+	nombre VARCHAR(100) NOT NULL
+	);
+
+CREATE TABLE tbl_permiso (
+	id SERIAL PRIMARY KEY,
+	fecha_desde date,
+	fecha_hasta date,
+	num_dias INTEGER,
+	id_empleado INTEGER references tbl_empleado (id),
+	id_tipoausencia INTEGER references tbl_tipo_ausencia (id)
+	
+	);
+
+insert into tbl_tipo_ausencia(detalle) values('CARGO A VACACIONES');
+insert into tbl_tipo_ausencia(detalle) values('ENFERMEDAD');
+insert into tbl_tipo_ausencia(detalle) values('COMPENSACIÓN');
+insert into tbl_tipo_ausencia(detalle) values('CALAMIDAD');
+insert into tbl_tipo_ausencia(detalle) values('PRESENTAR CERTIIFCADO');
